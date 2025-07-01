@@ -1,16 +1,43 @@
 import { useEffect, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+
+import Home from './pages/Home';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Navbar from './components/Navbar';
+import { getHome } from './utilities/getData';
+
+
 
 function App() {
   const [msg, setMsg] = useState('');
+  const location = useLocation();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/${window.location.pathname}`)
-      .then(res => res.json())
-      .then(data => {setMsg(data.message)})
-      .catch(err => console.error(err));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const data = await getHome(location.pathname);
+        setMsg(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+  };
 
-  return <h1>{msg}</h1>;
+  fetchData();
+  }, [location.pathname]);
+
+  return (
+    <>
+      <Navbar />
+      <h1>{msg}</h1>
+
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
