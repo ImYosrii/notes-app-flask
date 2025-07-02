@@ -6,9 +6,7 @@ export default function Note({note, noteId, deleteNote}){
             <div className="note">
                 <p>{note}</p>
             </div>
-            <div className="note-actions">
                 <MdDelete className="delete-ico" onClick={()=>deleteNote(noteId)}/>
-            </div>
         </div>
     );
 }

@@ -5,6 +5,8 @@ from . import db
 
 auth = Blueprint('auth', __name__)
 
+# Authentication routes for login and signup
+
 @auth.route("/login", methods=['POST'])
 def login():
     if request.method == "POST":

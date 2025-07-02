@@ -1,5 +1,3 @@
-# This is where routes are defined
-
 from flask import Blueprint, jsonify, request
 from .models import User, Note
 from . import db
@@ -7,8 +5,9 @@ from . import db
 
 views = Blueprint('views', __name__)
 
+# Home route for handling notes
 @views.route('/', methods=["GET", "POST", "DELETE"])
-def hello():
+def notes():
     if request.method == "POST":
         data = request.get_json()
         user = data.get('user')

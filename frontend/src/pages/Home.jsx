@@ -46,14 +46,14 @@ export default function Home({ user }) {
         addNote()
     }
 
-        useEffect(() => {
-        async function fetchNotes() {
-            const response = await getNotes(user)
-                if (response){
-                    setNotesArray(response)
-                }
-        }
-        fetchNotes()
+    useEffect(() => {
+    async function fetchNotes() {
+        const response = await getNotes(user)
+            if (response){
+                setNotesArray(response)
+            }
+    }
+    fetchNotes()
 
     }, [])
     return (
