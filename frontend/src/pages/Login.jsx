@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../utilities/getData";
+import { loginUser } from "../utilities/api";
 
-export default function Login() {
+export default function Login({ setLoggedin, setUser }) {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -18,6 +18,8 @@ export default function Login() {
                 return
             }
             else if (response === "Login successful"){
+                setLoggedin(true);
+                setUser(formData.email);
                 alert("Login successful. Welcome!");
                 navigate('/'); 
             }

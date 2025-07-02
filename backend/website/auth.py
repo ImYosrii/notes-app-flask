@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from .models import User, Note
+from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 
@@ -17,12 +17,6 @@ def login():
             return jsonify(message="Invalid credentials"), 401
         else:
             return jsonify(message="Login successful"), 200
-
-  
-
-@auth.route("/logout")
-def logout():
-    return jsonify(message="Logout endpoint")
 
 @auth.route("/signup", methods=['POST'])
 def signup():

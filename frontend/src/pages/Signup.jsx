@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signUpUser } from "../utilities/getData";
+import { signUpUser } from "../utilities/api";
 import { useNavigate } from "react-router-dom";
 export default function Signup() {
     const [formData, setFormData] = useState({
@@ -79,7 +79,6 @@ export default function Signup() {
                     required
                 />
                 <button type="submit">Sign Up</button>
-
             </form>
         </div>
     );
