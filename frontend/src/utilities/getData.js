@@ -35,4 +35,4 @@ async function loginUser(email, password) {
 }
 
 
-export { getHome, signUpUser, loginUser };
+export { signUpUser, loginUser };
