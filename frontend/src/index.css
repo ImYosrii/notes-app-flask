@@ -3,3 +3,39 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.navbar{
+  background: rgb(65, 65, 65);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.8em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.link-item{
+  color: rgb(202, 202, 202);
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+
+/* Sign-up / Log-in Page */
+.signup-page, .login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap:1em;
+}
+
+.signup-form, .login-form {
+  display: flex;
+  flex-direction: column;
+
+}
