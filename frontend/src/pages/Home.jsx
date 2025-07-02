@@ -1,26 +1,27 @@
 import { useState, useEffect } from "react"
 
-import { createNote, getNotes } from "../utilities/api"
+import { createNote, getNotes, deleteNoteDB } from "../utilities/api"
 import Note from "../components/Note"
 
 export default function Home({ user }) {
     const [notesArray, setNotesArray] = useState([])
     const [note, setNote] = useState("")
-    
+
     const notes = notesArray.map(note=>{
-        return <Note key={note[0]} note={note[1]} noteNum={note[0]} />
+        return <Note key={note[0]} note={note[1]} noteId={note[0]} deleteNote={deleteNote} />
     })
 
-    useEffect(() => {
-        async function fetchNotes() {
-            const response = await getNotes(user)
-                if (response){
-                    setNotesArray(response)
-                }
-        }
-        fetchNotes()
 
-    }, [])
+    async function deleteNote(noteId) {
+        const response = await deleteNoteDB(noteId)
+        if (response === "Note deleted successfully"){
+            alert("Note deleted successfully")
+        }
+        else {
+            alert("Error deleting note. Please try again.")
+        }
+        setNotesArray(notesArray.filter(note => note[0] !== noteId))
+    }
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -44,9 +45,22 @@ export default function Home({ user }) {
         }
         addNote()
     }
+
+        useEffect(() => {
+        async function fetchNotes() {
+            const response = await getNotes(user)
+                if (response){
+                    setNotesArray(response)
+                }
+        }
+        fetchNotes()
+
+    }, [])
     return (
         <div className="home-page">
-            {notes}
+            <div className="notes-container">
+                {notes}
+            </div>
             <form className="note-form" onSubmit={handleSubmit}>
                 <textarea 
                     className="note-input"

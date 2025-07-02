@@ -30,8 +30,9 @@ export default function Login({ setLoggedin, setUser }) {
 
     return (
         <div className="login-page">
-            <h1>Login Page</h1>
+            <h1>Login</h1>
             <form className="login-form" onSubmit={handleSubmit}>
+                <label htmlFor="email">Email</label>
                 <input 
                     type="email"
                     id="email"
@@ -41,6 +42,7 @@ export default function Login({ setLoggedin, setUser }) {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
                 />
+                <label htmlFor="password">Password</label>
                 <input 
                     type="password"
                     id="password"
@@ -50,7 +52,7 @@ export default function Login({ setLoggedin, setUser }) {
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     required
                 />
-                <button type="submit">Sign Up</button>
+                <button type="submit">Log-in</button>
 
             </form>
         </div>

@@ -44,7 +44,7 @@ export default function Signup() {
 
     return (
         <div className="signup-page">
-            <h1>Sign-up Page</h1>
+            <h1>Sign-up</h1>
             <form className="signup-form" onSubmit={handelSubmit}>
                 <label htmlFor="email">Email</label>
                 <input

@@ -7,7 +7,7 @@ from . import db
 
 views = Blueprint('views', __name__)
 
-@views.route('/', methods=["GET", "POST"])
+@views.route('/', methods=["GET", "POST", "DELETE"])
 def hello():
     if request.method == "POST":
         data = request.get_json()
@@ -29,3 +29,14 @@ def hello():
         notes = Note.query.filter_by(user_id=userId).all()
         notesArray = [[note.id, note.data] for note in notes]
         return jsonify(notes=notesArray), 200
+
+    elif request.method == "DELETE":
+        noteId = request.args.get('noteId')
+
+        note = Note.query.get(noteId)
+        if note:
+            db.session.delete(note)
+            db.session.commit()
+            return jsonify(message="Note deleted successfully"), 200
+        else:
+            return jsonify(message="Note not found"), 404

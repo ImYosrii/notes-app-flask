@@ -69,4 +69,23 @@ async function getNotes(user) {
     }
 }
 
-export { signUpUser, loginUser, createNote, getNotes };
+// delete note
+async function deleteNoteDB(noteId){
+    try {
+        const response = await fetch(`http://localhost:5000/?noteId=${noteId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+            
+        })
+        const data = await response.json();
+        return data.message;
+
+    } catch (err) {
+        console.error('Error deleting note:', err);
+    }
+}
+
+
+export { signUpUser, loginUser, createNote, getNotes, deleteNoteDB };

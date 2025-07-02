@@ -1,8 +1,14 @@
-export default function Note({note, noteNum}){
+import { MdDelete } from "react-icons/md";
+
+export default function Note({note, noteId, deleteNote}){
     return (
-        <div>
-            <h1>{noteNum}</h1>
-            <p>{note}</p>
+        <div className="note-container">
+            <div className="note">
+                <p>{note}</p>
+            </div>
+            <div className="note-actions">
+                <MdDelete className="delete-ico" onClick={()=>deleteNote(noteId)}/>
+            </div>
         </div>
     );
 }
